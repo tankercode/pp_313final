@@ -32,7 +32,7 @@
         <td th:text="${user.getEmail()}"></td>
         <td th:text="${user.getPassword()}"></td>
         <td><span th:each="roles : ${user.getRole()}"
-                  th:utext="${roles.toString()}">Roles</span></td>
+                  th:utext="${roles.getType().toString()}">Roles</span></td>
         <td>
             <a th:href="@{/admin/edit(id=${user.getId()})}">Edit</a>
 

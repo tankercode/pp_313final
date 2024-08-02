@@ -13,11 +13,15 @@ public interface UserService {
 
     Optional<User> findOne(int id);
 
+    List<Role> findAllRoles();
+
     void save(User user) throws RoleNotFoundException;
 
     void save(Role role);
 
-    void update(int id, User tmp);
+    void save(User user, int[] rolesIds) throws RoleNotFoundException;
+
+    void update(User tmp, int[] rolesIds);
 
     void deleteUserById(int id);
 }

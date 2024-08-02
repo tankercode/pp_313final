@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Edit user page</title>
@@ -9,46 +9,56 @@
 <H1>Edit user page</H1>
 
 <div>
-<div class="col-1"><a class="nav-link active text-white-50" href="/logout">Logout</a></div>
+    <div class="col-1"><a class="nav-link active text-white-50" href="/logout">Logout</a></div>
 </div>
 
 <br>
-<form th:method="PATCH" th:action="@{/admin/edit(id=${user.get().getId()})}" th:object="${user}">
+<form th:method="PATCH" th:action="@{/admin/edit(id=${currentUser.getId()})}" th:object="${currentUser}">
 
     <div>
         <label>Name:</label>
         <label>
-            <input type="text" field="*{get().getName()}" name="name">
+            <input type="text" th:field="*{name}" name="name">
+        </label>
+    </div>
+    <div>
+        <label>Last Name:</label>
+        <label>
+            <input type="text" th:field="*{lastname}" name="lastname">
         </label>
     </div>
 
     <div>
-        <label>Last Name:</label>
+        <label>Age:</label>
         <label>
-            <input type="text" field="*{get().getLastname()}" name="lastname">
+            <input type="text" th:field="*{age}" name="age">
         </label>
     </div>
 
     <div>
         <label>Email:</label>
         <label>
-            <input type="text" field="*{get().getEmail()}" name="email">
+            <input type="text" th:field="*{email}" name="email">
         </label>
     </div>
     <div>
         <label>Password:</label>
         <label for="inputPassword">
-            <input style="max-width: 15%" type="password" class="form-control" name="pass" id="inputPassword" placeholder="Password">
+            <input style="max-width: 15%" type="password" class="form-control" name="password" id="inputPassword" placeholder="Password">
         </label>
     </div>
 
     <div class="form-group" style="max-width: 15%">
         <label for="roles" class="col-form-label">Role:</label>
-        <select class="form-control" name="rolesId" id="roles" multiple size="2">
-            <option th:each="role: ${user.get().getRole()}" th:value="${role.id}" th:text="${role.toString()}"></option>
+        <select class="form-control" name="roles" id="roles" multiple size="2">
+            <option th:each="role: ${allRoles}" th:value="${role.getId()}" th:text="${role.getType().toString()}"></option>
         </select>
     </div>
+
+
     <br>
+
+
     <div>
         <button type="submit">Update User</button>
     </div>

@@ -1,46 +1,65 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <meta charset="UTF-8">
-  <title>Create user page</title>
+    <meta charset="UTF-8">
+    <title>Create user page</title>
+
 </head>
+
 <body>
 <H1>Create user page</H1>
 
-</div>
 <div class="col-1"><a class="nav-link active text-white-50" href="/logout">Logout</a></div>
-</div>
 
-<form th:method="POST" th:action="@{/}" th:object="${user}">
+<form th:method="POST" th:action="@{/admin/new}" th:object="${user}">
 
-  <div>
-    <label>Name:</label>
-    <input type="text" th:field="*{name}"/>
-  </div>
+    <div>
+        <label>Name:
+            <input type="text" th:field="*{name}"/>
+        </label>
+    </div>
 
-  <div>
-    <label>Last Name:</label>
-    <input type="text" th:field="*{lastname}"/>
-  </div>
+    <div>
+        <label>Last Name:
+            <input type="text" th:field="*{lastname}"/>
+        </label>
+    </div>
 
-  <div>
-    <label>Email:</label>
-    <input type="text" th:field="*{email}"/>
-  </div>
+    <div>
+        <label>Email:
+            <input type="text" th:field="*{email}"/>
+        </label>
+    </div>
 
-  <div>
-    <label>Age:</label>
-    <input type="text" th:field="*{age}"/>
-  </div>
+    <div>
+        <label>Age:
+            <input type="text" th:field="*{age}"/>
+        </label>
+    </div>
 
-  <div>
-    <label>Password:</label>
-    <input type="password" th:field="*{pass}"/>
-  </div>
+    <div>
+        <label>Password:
+            <input type="password" th:field="*{password}"/>
+        </label>
+    </div>
 
-  <div>
-    <button type="submit">Add User</button>
-  </div>
+    <label for="roles"
+           class="col-form-label">
+        Role
+    </label>
+    <select class="form-control"
+            name="roleIds"
+            id="roles"
+            multiple size="2">
+        <option th:each="role: ${allRoles}"
+                th:text="${role.getType()}"
+                th:value="${role.getId()}">
+        </option>
+    </select>
+
+    <div>
+        <button type="submit">Add User</button>
+    </div>
 </form>
 
 </body>
